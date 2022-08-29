@@ -1,4 +1,5 @@
-import "./datatable.scss";
+import React from "react";
+import "./datatable.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";

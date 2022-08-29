@@ -1,4 +1,5 @@
-import "./singleHotel.scss";
+import React from "react";
+import "./singleHotel.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import useFetch from "../../hooks/useFetch";

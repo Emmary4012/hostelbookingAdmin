@@ -1,4 +1,5 @@
-import "./newHostel.scss";
+import React from "react";
+import "./newHostel.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
