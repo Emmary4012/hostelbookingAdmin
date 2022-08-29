@@ -1,8 +1,15 @@
-import "./single.scss";
+import "./singleHostel.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import useFetch from "../../hooks/useFetch";
+import { useParams } from "react-router-dom";
 
-const Single = () => {
+
+const SingleHostel = () => {
+
+    const {id} = useParams();
+    const {data, loading, error} = useFetch(`/api/hotels/find/${id}`);
+    console.log(data);
   return (
     <div className="single">
       <Sidebar />
@@ -48,4 +55,4 @@ const Single = () => {
   );
 };
 
-export default Single;
+export default SingleHostel;
