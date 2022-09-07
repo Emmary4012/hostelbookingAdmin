@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 const SingleHostel = () => {
 
     const {id} = useParams();
-    const {data, loading, error} = useFetch(`/api/hotels/find/${id}`);
+    const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/hotels/find/${id}`);
     console.log(data);
   return (
     <div className="single">

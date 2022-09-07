@@ -1,23 +1,20 @@
 import React from "react";
-import "./datatable.css";
+import "./datatable.css"; 
 import { DataGrid } from "@mui/x-data-grid";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
 const Datatable = ({columns}) => {
   const location = useLocation();
-  console.log(location.pathname);
-  console.log(location.pathname.split("/")[1]);  
   const path = location.pathname.split("/")[1];
-
   const [list, setList] = useState();
   const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/${path}`);
   
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/${path}/${id}`);
+      await axios.delete(`https://hostel7booking.herokuapp.com/api/${path}/${id}`);
     setList(list.filter((item) => item._id !== id));
     } catch (error) {
       
@@ -57,7 +54,9 @@ console.log(list)
           Add New
         </Link>
       </div>
-      {list && <DataGrid
+      {list && 
+       <DataGrid
+        onClick = {()=>{Navigate(`/${path}/row._id`)}}
         className="datagrid"
         rows={list}
         columns={columns.concat(actionColumn)}
@@ -65,7 +64,8 @@ console.log(list)
         rowsPerPageOptions={[9]}
         checkboxSelection
         getRowId={row=>row._id}
-      />}
+         />
+      }
     </div>
   );
 };

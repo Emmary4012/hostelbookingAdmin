@@ -2,7 +2,6 @@ import React from "react";
 import "./newHotel.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import { hotelInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
@@ -13,7 +12,7 @@ const NewHotel = () => {
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
 
-  const { data, loading, error } = useFetch("/api/rooms");
+  const { data, loading, error } = useFetch("https://hostel7booking.herokuapp.com/api/rooms");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -79,9 +78,9 @@ const NewHotel = () => {
           <div className="right">
             <form>
               <div className="formInput">
-                <label htmlFor="file">
+                {/* <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
+                </label> */}
                 <input
                   type="file"
                   id="file"

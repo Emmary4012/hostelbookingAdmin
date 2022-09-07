@@ -15,7 +15,7 @@ const Login = () => {
     const handleClick = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post("/api/auth/login", JSON.stringify(credentials));
+            const res = await axios.post("https://hostel7booking.herokuapp.com/api/auth/login", JSON.stringify(credentials));
             if(res.data.isAdmin){
               res.status(200).JSON(credentials);
               navigate("/");

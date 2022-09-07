@@ -9,8 +9,8 @@ import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {  hostelInputs, userInputs } from "./formSource";
 import { roomColumns, hotelColumns, hostelColumns, userColumns } from "./datatablesource";
-import  NewHotel  from "./pages/newHotel/NewHotel";
-import  NewHostel  from "./pages/newHostel/NewHostel";
+import  NewHotel  from "./pages/hotel/NewHotel";
+import  NewHostel  from "./pages/hostel/NewHostel";
 import  NewRoom  from "./pages/newRoom/NewRoom";
 
 

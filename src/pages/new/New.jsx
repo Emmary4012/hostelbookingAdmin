@@ -2,7 +2,6 @@ import React from "react";
 import "./new.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import axios from "axios";
 
@@ -32,7 +31,7 @@ const New = ({ inputs, title }) => {
         img: url,
       };
 
-      await axios.post("/auth/register", newUser);
+      await axios.post("https://hostel7booking.herokuapp.com/auth/register", newUser);
     } catch (err) {
       console.log(err);
     }
@@ -61,9 +60,9 @@ const New = ({ inputs, title }) => {
            <div className="right">
              <form>
                <div className="formInput">
-                 <label htmlFor="file">
+                 {/* <label htmlFor="file">
                     Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                 </label>
+                 </label> */}
                  <input
                   type="file"
                   id="file"

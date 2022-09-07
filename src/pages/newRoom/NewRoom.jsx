@@ -2,7 +2,6 @@ import React from "react";
 import "./newRoom.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import { roomInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
@@ -25,6 +24,8 @@ const NewRoom = () => {
     try {
       await axios.post(`https://hostel7booking.herokuapp.com/api/rooms/${hostelId}`, { ...info, roomNumbers });
       console.log("Rooms created");
+      console.log(hostelId);
+      console.log(rooms);
     } catch (err) {
       console.log(err);
     }

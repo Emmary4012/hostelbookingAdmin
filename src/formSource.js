@@ -152,6 +152,18 @@ export const hostelInputs = [
     placeholder: "elton st, 216",
   },
   {
+    id: "phone",
+    label: "Phone",
+    type: "text",
+    placeholder: "0756444209",
+  },
+  {
+    id: "email",
+    label: "Email",
+    type: "text",
+    placeholder: "john@gmail.com",
+  },
+  {
     id: "distance",
     label: "Distance from a known campus point",
     type: "text",
@@ -172,13 +184,13 @@ export const hostelInputs = [
   {
     id: "rating",
     label: "Rating",
-    type: "text",
+    type: "Number",
     placeholder: "4",
   },
   {
     id: "cheapestPrice",
     label: "Price",
-    type: "text",
+    type: "Number",
     placeholder: "100",
   },
 ];
