@@ -48,6 +48,22 @@ function App() {
                 element={<NewHostel inputs={hostelInputs}/>}
               />
             </Route>
+            <Route path="apartments">
+              <Route index element={<List columns={hostelColumns}/>} />
+              <Route path=":apartmentId" element={<SingleHostel />} />
+              <Route
+                path="new"
+                element={<NewHostel inputs={hostelInputs}/>}
+              />
+            </Route>
+            <Route path="rentals">
+              <Route index element={<List columns={hostelColumns}/>} />
+              <Route path=":rentalId" element={<SingleHostel />} />
+              <Route
+                path="new"
+                element={<NewHostel inputs={hostelInputs}/>}
+              />
+            </Route>
             <Route path="rooms">
               <Route index element={<List columns={roomColumns}/>} />
               <Route path=":roomsId" element={<Single />} />

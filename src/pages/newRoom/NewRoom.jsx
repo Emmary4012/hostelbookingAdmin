@@ -20,11 +20,13 @@ const NewRoom = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log(hostelId);
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
+    console.log(roomNumbers);
     try {
-      await axios.post(`https://hostel7booking.herokuapp.com/api/rooms/${hostelId}`, { ...info, roomNumbers });
+      
+      await axios.post(`http://localhost:5000/api/rooms/${hostelId}`, { ...info, roomNumbers });
       console.log("Rooms created");
-      console.log(hostelId);
       console.log(rooms);
     } catch (err) {
       console.log(err);

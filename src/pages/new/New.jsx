@@ -1,10 +1,9 @@
 import React from "react";
 import "./new.css";
-import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useState } from "react";
 import axios from "axios";
-
+import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
@@ -40,7 +39,6 @@ const New = ({ inputs, title }) => {
   console.log(info);
   return (
     <div className="new">
-       <Sidebar />
        <div className="newContainer">
          <Navbar />
          <div className="top">
@@ -60,9 +58,9 @@ const New = ({ inputs, title }) => {
            <div className="right">
              <form>
                <div className="formInput">
-                 {/* <label htmlFor="file">
+                 <label htmlFor="file">
                     Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                 </label> */}
+                 </label>
                  <input
                   type="file"
                   id="file"

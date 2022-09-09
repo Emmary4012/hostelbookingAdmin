@@ -125,19 +125,19 @@ export const hostelInputs = [
     id: "name",
     label: "Name",
     type: "text",
-    placeholder: "My Hostel",
+    placeholder: "My Favorite",
   },
   {
     id: "type",
     label: "Type",
     type: "text",
-    placeholder: "hostel",
+    placeholder: "Hostel/Apartment/Rental",
   },
   {
     id: "campus",
     label: "Campus",
     type: "text",
-    placeholder: "Makerere Main",
+    placeholder: "MUK",
   },
   {
     id: "village",
@@ -173,7 +173,7 @@ export const hostelInputs = [
     id: "title",
     label: "Title",
     type: "text",
-    placeholder: "The best Hostel",
+    placeholder: "The Hidden Palace",
   },
   {
     id: "desc",
@@ -191,7 +191,7 @@ export const hostelInputs = [
     id: "cheapestPrice",
     label: "Price",
     type: "Number",
-    placeholder: "100",
+    placeholder: "150000",
   },
 ];
 

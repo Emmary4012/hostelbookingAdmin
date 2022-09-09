@@ -1,6 +1,5 @@
 import React from "react";
 import "./newHostel.css";
-import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
@@ -56,12 +55,9 @@ const NewHostel = () => {
   };
   return (
     <div className="new">
-      <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
-          <h1>Add New Hostel</h1>
-        </div>
+        <div className="top"><h1>Add New Hostel</h1></div>
         <div className="bottom">
           <div className="left">
             <img
@@ -74,7 +70,7 @@ const NewHostel = () => {
             />
           </div>
           <div className="right">
-            <form>
+            <form className="form">
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
