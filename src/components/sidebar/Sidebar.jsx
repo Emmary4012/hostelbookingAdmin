@@ -19,10 +19,10 @@ const Sidebar = () => {
           <p className="title">LISTS</p>
           <Link to="/users" className="lin"><li><PersonOutlineIcon className="icon" /><span>Users</span></li></Link>
           <Link to="/hotels" className="lin"><li><StoreIcon className="icon" /><span>Hotels</span></li></Link>
-          <Link to="/hostels" className="lin"><li><StoreIcon className="icon" /><span>Hostels</span></li></Link>
-          <Link to="/apartments" className="lin"><li><StoreIcon className="icon" /><span>Apartments</span></li></Link>
-          <Link to="/rentals" className="lin"><li><StoreIcon className="icon" /><span>Rentals</span></li></Link>
-          <Link to="/rooms" className="lin"><li><StoreIcon className="icon" /><span>Rooms</span></li></Link>
+          <Link to="/properties/hostels" className="lin"><li><StoreIcon className="icon" /><span>Hostels</span></li></Link>
+          <Link to="/properties/apartments" className="lin"><li><StoreIcon className="icon" /><span>Apartments</span></li></Link>
+          <Link to="/properties/rentals" className="lin"><li><StoreIcon className="icon" /><span>Rentals</span></li></Link>
+          <Link to="/property/rooms" className="lin"><li><StoreIcon className="icon" /><span>Rooms</span></li></Link>
         </ul>
       </div>
     </div>

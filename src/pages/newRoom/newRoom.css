@@ -120,6 +120,9 @@
           .formInput {
             width: 40%;
           }
+          .t {
+            text-transform: lowercase;
+          }
             label {
               display: flex;
               align-items: center;

@@ -1,17 +1,21 @@
 import React from "react";
-import "./newHostel.css";
-import Sidebar from "../../components/sidebar/Sidebar";
+import "./newProperty.css";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import { hostelInputs } from "../../formSource";
+import { propertyInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-const updatHostel = () => {
+const NewProperty = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [urls, setUrls] = useState([]);
+  const location = useLocation();
+  const path = location.pathname.split("/")[2];
+  console.log({path})
 
   const { data, loading, error } = useFetch("https://hostel7booking.herokuapp.com/api/rooms");
 
@@ -29,39 +33,30 @@ const updatHostel = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    const URLs = urls.split(",").map((url) => ({ img: url }));
     console.log("handling click");
     try {
-      const list = await Promise.all(
-        Object.values(files).map(async (file) => {
-          const data = new FormData();
-          data.append("file", file);
-          data.append("upload_preset", "upload");
-          const uploadRes = await axios.post(
-            "https://api.cloudinary.com/v1_1/emmanuel1240/image/upload",
-            data
-          );
-
-          const { url } = uploadRes.data;
-          return url;
-        })
-      );
-      console.log("Images already on Cloudinary")
-      const updatedhostel = {
-        ...info,
-        rooms,
-        img: list,
-      };
-      await axios.post("https://hostel7booking.herokuapp.com/api/hostels", updatedhostel); console.log("Hostel Created");
+      // const list = await Promise.all(
+      //   Object.values(files).map(async (file) => {
+      //     const data = new FormData();
+      //     data.append("file", file);
+      //     data.append("upload_preset", "upload");
+      //     const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/emmanuel1240/image/upload", data);
+      //     const { url } = uploadRes.data;
+      //     return url;
+      //   })
+      // );
+      // console.log("Images already on Cloudinary");
+      const newproperty = (JSON.stringify({...info, rooms, URLs,}));
+      
+      await axios.post(`https://hostel7booking.herokuapp.com/api/${path}`, newproperty); console.log("Property Created");
     } catch (err) {console.log(err)}
   };
   return (
     <div className="new">
-      <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">
-          <h1>Update Hostel</h1>
-        </div>
+        <div className="top"><h1>Add New {path.substring(0,path.length-1)}</h1></div>
         <div className="bottom">
           <div className="left">
             <img
@@ -74,7 +69,7 @@ const updatHostel = () => {
             />
           </div>
           <div className="right">
-            <form>
+            <form className="form">
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -88,7 +83,7 @@ const updatHostel = () => {
                 />
               </div>
 
-              {hostelInputs.map((input) => (
+              {propertyInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input
@@ -128,4 +123,4 @@ const updatHostel = () => {
   );
 };
 
-export default updateHostel;
+export default NewProperty;

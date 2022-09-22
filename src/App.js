@@ -1,82 +1,63 @@
 import React from "react";
+import { useState } from "react";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
-import SingleHostel from "./pages/singleHostel/SingleHostel";
-import SingleHotel from "./pages/singleHotel/SingleHotel";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {  hostelInputs, userInputs } from "./formSource";
-import { roomColumns, hotelColumns, hostelColumns, userColumns } from "./datatablesource";
-import  NewHotel  from "./pages/hotel/NewHotel";
-import  NewHostel  from "./pages/hostel/NewHostel";
+import {  propertyInputs, userInputs } from "./formSource";
+import { roomColumns, propertyColumns, userColumns } from "./datatablesource";
+import  NewProperty  from "./pages/property/NewProperty";
 import  NewRoom  from "./pages/newRoom/NewRoom";
+import UpdateProperty from "./pages/property/UpdateProperty";
+import Property from "./pages/property/Property";
 
 
 function App() {
-  
 
-  return (
+  const [credentials, setCredentials] = useState({username: undefined, 
+    email: undefined, fullname: undefined, propertyName: undefined, propertyType: undefined, address: undefined, 
+    phone: undefined, price: undefined, months: undefined, 
+    message: undefined, modeofpayment: undefined});
+  const handleChange = (e) => { setCredentials((prev) => ({...prev, [e.target.id]: e.target.value}))};
+
+  const [dates, setDates] = useState([ {startDate: new Date(), endDate: new Date(), key: "selection",},]);
+  const [selectedRooms, setSelectedRooms] = useState([]);
+
+    return (
     <div className="darkMode">
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+
+            <Route index element={<Home username = {credentials.username}/>} />
+            <Route path="login" element={<Login credentials = {credentials} handleChange = {handleChange}/>} />
+
             <Route path="users">
               <Route index element={<List columns={userColumns}/>} />
               <Route path=":userId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
-              />
+              <Route path="new" element={<New inputs={userInputs} title="Add New User" />} />
             </Route>
-            <Route path="hotels">
-              <Route index element={<List columns={hotelColumns}/>} />
-              <Route path=":hotelId" element={<SingleHotel />} />
-              <Route
-                path="new"
-                element={<NewHotel />}
-              />
+           
+            <Route path="/properties/:property">
+              <Route index element={<List columns={propertyColumns}/>} />
+              <Route path="new" element={<NewProperty inputs={propertyInputs}/>} />      
+              <Route path="view/:id" element={<Property credentials = {credentials} handleChange = {handleChange} 
+                 dates={dates} setDates={setDates} selectedRooms={selectedRooms} setSelectedRooms={setSelectedRooms}/>} />
+              <Route path=":id" element={<UpdateProperty />} />
             </Route>
-            <Route path="hostels">
-              <Route index element={<List columns={hostelColumns}/>} />
-              <Route path=":hostelId" element={<SingleHostel />} />
-              <Route
-                path="new"
-                element={<NewHostel inputs={hostelInputs}/>}
-              />
-            </Route>
-            <Route path="apartments">
-              <Route index element={<List columns={hostelColumns}/>} />
-              <Route path=":apartmentId" element={<SingleHostel />} />
-              <Route
-                path="new"
-                element={<NewHostel inputs={hostelInputs}/>}
-              />
-            </Route>
-            <Route path="rentals">
-              <Route index element={<List columns={hostelColumns}/>} />
-              <Route path=":rentalId" element={<SingleHostel />} />
-              <Route
-                path="new"
-                element={<NewHostel inputs={hostelInputs}/>}
-              />
-            </Route>
-            <Route path="rooms">
+            
+            <Route path="/property/rooms">
               <Route index element={<List columns={roomColumns}/>} />
               <Route path=":roomsId" element={<Single />} />
-              <Route
-                path="new"
-                element={<NewRoom />}
-              />
+              <Route path="new" element={<NewRoom />} />
             </Route>
+
           </Route>
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
-
 export default App;

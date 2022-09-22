@@ -1,14 +1,15 @@
 import React from "react";
 import "./datatable.css"; 
 import { DataGrid } from "@mui/x-data-grid";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
 const Datatable = ({columns}) => {
   const location = useLocation();
-  const path = location.pathname.split("/")[1];
+  const path = location.pathname.split("/")[2];
+  const navigate = useNavigate();
   const [list, setList] = useState();
   const {data, loading, error} = useFetch(`https://hostel7booking.herokuapp.com/api/${path}`);
   
@@ -23,7 +24,7 @@ const Datatable = ({columns}) => {
 useEffect(()=>{
   setList(data);
 },[data])
-console.log(list)
+
   const actionColumn = [
     {
       field: "action",
@@ -32,12 +33,15 @@ console.log(list)
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
+            <div className="viewButton"  onClick={() => navigate(`/properties/${path}/view/${params.row._id}`)}>View</div>
+            
+            <div className="viewButton"
+              onClick={() => navigate(`/properties/${path}/${params.row._id}`)}>
+              Update
+            </div>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row._id)}
+             // onClick={() => handleDelete(params.row._id)}
             >
               Delete
             </div>
@@ -50,13 +54,12 @@ console.log(list)
     <div className="datatable">
       <div className="datatableTitle">
         {path}
-        <Link to={`/${path}/new`} className="link">
-          Add New
+        <Link to={`/properties/${path}/new`} className="link">
+          Add New {path.substring(0,path.length-1)}
         </Link>
       </div>
       {list && 
        <DataGrid
-        onClick = {()=>{Navigate(`/${path}/row._id`)}}
         className="datagrid"
         rows={list}
         columns={columns.concat(actionColumn)}

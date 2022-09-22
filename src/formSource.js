@@ -1,5 +1,11 @@
 export const userInputs = [
   {
+    id: "img",
+    label: "Image URL",
+    type: "text",
+    placeholder: "john_doe",
+  },
+  {
     id: "username",
     label: "Username",
     type: "text",
@@ -120,7 +126,7 @@ export const hotelInputs = [
   },
 ];
 
-export const hostelInputs = [
+export const propertyInputs = [
   {
     id: "name",
     label: "Name",
@@ -182,6 +188,12 @@ export const hostelInputs = [
     placeholder: "description",
   },
   {
+    id: "roomsdesc",
+    label: "Rooms General Description",
+    type: "text",
+    placeholder: "description",
+  },
+  {
     id: "rating",
     label: "Rating",
     type: "Number",
@@ -189,7 +201,7 @@ export const hostelInputs = [
   },
   {
     id: "cheapestPrice",
-    label: "Price",
+    label: "Cheapest Price",
     type: "Number",
     placeholder: "150000",
   },
@@ -200,7 +212,7 @@ export const roomInputs = [
     id: "title",
     label: "Title",
     type: "text",
-    placeholder: "2 bed room",
+    placeholder: "Single / Double / Tripple",
   },
   {
     id: "desc",
@@ -210,9 +222,9 @@ export const roomInputs = [
   },
   {
     id: "price",
-    label: "Cheapest Price",
+    label: "Price",
     type: "number",
-    placeholder: "100",
+    placeholder: "600000",
   },
   {
     id: "maxPeople",

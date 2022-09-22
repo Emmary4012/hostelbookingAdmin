@@ -9,31 +9,24 @@ import axios from "axios";
 
 const NewRoom = () => {
   const [info, setInfo] = useState({});
-  const [hostelId, setHostelId] = useState(undefined);
+  const [propertyId, setPropertyId] = useState(undefined);
   const [rooms, setRooms] = useState([]);
+  const [property, setProperty] = useState("hostels");
+  const properties = ["hostels", "rentals", "apartments"];
 
-  const { data, loading, error } = useFetch("https://hostel7booking.herokuapp.com/api/hostels");
-
-  const handleChange = (e) => {
-    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
+  const { data, loading, error } = useFetch(`https://hostel7booking.herokuapp.com/api/${property}`);
+  const handleChange = (e) => {  setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value })) };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(hostelId);
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
-    console.log(roomNumbers);
     try {
-      
-      await axios.post(`http://localhost:5000/api/rooms/${hostelId}`, { ...info, roomNumbers });
-      console.log("Rooms created");
-      console.log(rooms);
+      await axios.post(`https://hostel7booking.herokuapp.com/api/rentalsrooms/${propertyId}`, { ...info, roomNumbers, propertyId });
     } catch (err) {
       console.log(err);
     }
   };
 
-  console.log(info)
   return (
     <div className="new">
       <Sidebar />
@@ -45,6 +38,13 @@ const NewRoom = () => {
         <div className="bottom">
           <div className="right">
             <form>
+            <div className="formInput">
+                <label>Choose <div className="t">a property type</div></label>
+                <select id="property"  onChange={(e) => setProperty(e.target.value)}  >
+                  {properties.map((p) => ( <option key={p} value={p}>{p}</option> ))}
+                </select>
+              </div>
+
               {roomInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
@@ -58,23 +58,13 @@ const NewRoom = () => {
               ))}
               <div className="formInput">
                 <label>Rooms</label>
-                <textarea
-                  onChange={(e) => setRooms(e.target.value)}
-                  placeholder="give comma between room numbers."
-                />
+                <textarea onChange={(e) => setRooms(e.target.value)} placeholder="give comma between room numbers."/>
               </div>
               <div className="formInput">
-                <label>Choose a hotel</label>
-                <select
-                  id="hostelId"
-                  onChange={(e) => setHostelId(e.target.value)}
-                >
-                  {loading
-                    ? "loading"
-                    : data &&
-                      data.map((hostel) => (
-                        <option key={hostel._id} value={hostel._id}>{hostel.name}</option>
-                      ))}
+                <label>Choose <div className="t">a {property.substring(0,property.length-1)}</div></label>
+                <select id="propertyId" onChange={(e) => setPropertyId(e.target.value) } >
+                  {loading ? "loading" : data && data.map((property) => (
+                        <option key={property._id} value={property._id} >{property.name}</option>))}
                 </select>
               </div>
               <button onClick={handleClick}>Send</button>
